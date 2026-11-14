@@ -13,13 +13,15 @@ class TestWorkerHealthAndRoutes(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         payload = res.json()
         self.assertTrue(payload.get("ok"))
-        self.assertIn("native_renderer", payload)
-        self.assertIn("whisper_installed", payload)
+        self.assertIn("nativeRenderer", payload)
+        self.assertIn("whisperInstalled", payload)
 
-    def test_protected_routes_enforce_bearer_token_when_configured(self):
-        res = self.client.post("/v1/render/overlays", json={
-            "fps": 30, "frameCount": 0, "width": 1080, "height": 1920
-        }, headers={"X-ClipForge-Token": "auto-local"})
+    def test_protected_routes_enforce_validation_with_token(self):
+        res = self.client.post(
+            "/v1/render/overlays",
+            json={"fps": 30, "frameCount": 0, "width": 1080, "height": 1920},
+            headers={"X-ClipForge-Token": "auto-local"},
+        )
         self.assertEqual(res.status_code, 400)
 
 

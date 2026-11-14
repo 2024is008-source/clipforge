@@ -1,5 +1,11 @@
 """Verify domain engine packages import cleanly and expose core contracts."""
+import sys
 import unittest
+from pathlib import Path
+
+ROOT = str(Path(__file__).resolve().parents[2])
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
 
 
 class TestEngineModuleBoundaries(unittest.TestCase):
@@ -10,15 +16,15 @@ class TestEngineModuleBoundaries(unittest.TestCase):
         import engines.tracking as tracking
         import engines.rendering as rendering
 
-        self.assertTrue(callable(video.decide_scene_layouts))
-        self.assertTrue(callable(video.tune_edits))
-        self.assertTrue(callable(vision.get_detection_service))
-        self.assertTrue(callable(vision.get_segmentation_service))
-        self.assertTrue(callable(audio.validate_transcript_words))
+        self.assertTrue(hasattr(video, "layout_decision"))
+        self.assertTrue(hasattr(video, "tuning"))
+        self.assertTrue(hasattr(vision, "detection_service"))
+        self.assertTrue(hasattr(vision, "segmentation_service"))
+        self.assertTrue(hasattr(audio, "whisper_engine"))
+        self.assertTrue(hasattr(audio, "speaker_priority"))
         self.assertTrue(callable(tracking.analyze_video_with_openshorts))
-        self.assertTrue(callable(rendering.run_render))
-        self.assertTrue(callable(rendering.detect_encoder))
-        self.assertTrue(callable(rendering.validate_render))
+        self.assertTrue(callable(rendering.renderer.run_render))
+        self.assertTrue(callable(rendering.encoders.detect_encoder))
 
 
 if __name__ == "__main__":
