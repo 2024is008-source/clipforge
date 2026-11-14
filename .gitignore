@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Python virtual environments & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Worker runtime data, model weights & caches
+worker_data/
+models_cache/
+*.pt
+*.pth
+*.onnx
+# Keep committed MediaPipe TFLite browser fallback models
+!public/vision/models/*.tflite
+public/vision/wasm/
+
+# Temporary media & render outputs
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.avi
+*.wav
+*.mp3
+*.aac
+*.flac
+*.ass
+*.srt
+*.vtt
+!tests/fixtures/**
+
+# Frontend build & framework outputs
+.output/
+.vinxi/
+.tanstack/
+.wrangler/
+coverage/
+
+# Logs & OS / IDE files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
