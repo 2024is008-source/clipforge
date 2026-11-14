@@ -367,12 +367,7 @@ except TypeError:
 
 
 class OverlayManifest(BaseModel):
-    try:
-        model_config = ConfigDict(extra="forbid")
-    except Exception:
-        pass
-    class Config:
-        extra = "forbid"
+    model_config = ConfigDict(extra="forbid")
     fps: StrictFloat | StrictInt
     frameCount: StrictInt
     width: StrictInt
